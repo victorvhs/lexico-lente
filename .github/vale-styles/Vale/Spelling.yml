@@ -1,0 +1,5 @@
+extends: spelling
+message: "Verifique a ortografia: '%s'"
+level: error
+ignore:
+  - .github/vale-styles/Vale/ignore.txt

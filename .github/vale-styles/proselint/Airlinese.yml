@@ -1,0 +1,18 @@
+extends: substitution
+message: "Evite jargão corporativo: '%s' → '%s'"
+level: warning
+ignorecase: true
+swap:
+  at the end of the day: finalmente
+  moving forward: daqui em diante
+  going forward: daqui em diante
+  best of breed: excelente
+  best practice: boa prática
+  buy-in: aceitação
+  circle back: retornar
+  deep dive: análise aprofundada
+  move the needle: fazer diferença
+  pain point: problema
+  paradigm shift: mudança de paradigma
+  synergy: sinergia
+  think outside the box: pensar fora da caixa

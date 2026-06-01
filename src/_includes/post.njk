@@ -1,0 +1,39 @@
+---
+layout: base.njk
+---
+
+<article class="post">
+  <div class="post-header">
+    <h1 class="post-title">{{ title }}</h1>
+    <p class="post-meta">
+      {{ page.date | dateFormat }}
+      {% if tags %}
+        ::
+        {% for tag in tags %}
+          {% if tag != "posts" %}
+            <a href="/tags/{{ tag | slugify }}/">{{ tag }}</a>{% if not loop.last %}, {% endif %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    </p>
+  </div>
+
+  <div class="post-body">
+    {{ content | safe }}
+  </div>
+</article>
+
+<div class="post-nav">
+  {%- set previousPost = collections.posts | getPreviousCollectionItem(page) %}
+  {%- set nextPost = collections.posts | getNextCollectionItem(page) %}
+
+  {% if previousPost %}
+    <a href="{{ previousPost.url }}">[ Post Anterior ]</a>
+  {% endif %}
+
+  {% if previousPost and nextPost %} {% endif %}
+
+  {% if nextPost %}
+    <a href="{{ nextPost.url }}">[ Próximo Post ]</a>
+  {% endif %}
+</div>

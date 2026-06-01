@@ -1,0 +1,27 @@
+name: Revisão Ortográfica
+
+on:
+  push:
+    paths:
+      - 'src/**/*.md'
+      - '.vale.ini'
+  pull_request:
+    paths:
+      - 'src/**/*.md'
+      - '.vale.ini'
+
+jobs:
+  vale:
+    name: Verificação de Prosa
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Vale Linter
+        uses: errata-ai/vale-action@v2.1.1
+        with:
+          files: src/
+          fail_on_error: false
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

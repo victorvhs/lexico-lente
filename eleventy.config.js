@@ -1,6 +1,7 @@
 module.exports = function(eleventyConfig) {
-  // Copiar CSS e assets diretamente
+  // Copiar CSS, assets e CNAME diretamente
   eleventyConfig.addPassthroughCopy("src/css");
+  eleventyConfig.addPassthroughCopy("src/CNAME");
 
   // Coleção de tags
   eleventyConfig.addCollection("tagList", function(collectionApi) {

@@ -36,7 +36,11 @@ Ele estava preso.
 Entre os andares 10 e 9.
 Apertou o botão de pânico, se encostou na lateral e esperou.
  Uma voz metalizada disse pelo interfone:
- - Essa porcaria travou outra vez. Vou chamar a equipe de manutenção. É a quarta vez essa semana. Até parece que eles querem ganhar dinheiro fácil para abrir a porta.
+ 
+
+
+
+-Essa porcaria travou outra vez. Vou chamar a equipe de manutenção. É a quarta vez essa semana. Até parece que eles querem ganhar dinheiro fácil para abrir a porta.
 
 Ouvindo isso, surgiu uma felicidade dentro dele.A desculpa perfeita tinha acabado de surgir. Escreveu uma longa mensagem avisando que não poderia chegar no horário e enviou junto uma foto com o elevador travado.
 

@@ -2,38 +2,53 @@
 layout: base.njk
 ---
 
-<article class="post">
+<article class="post post-single">
   <div class="post-header">
     <h1 class="post-title">{{ title }}</h1>
     <p class="post-meta">
-      {{ page.date | dateFormat }}
-      {% if tags %}
+      <time datetime="{{ page.date | dateISO }}">{{ page.date | dateFormat }}</time>
+      {%- set postTags = tags | semTags %}
+      {%- if postTags.length %}
         ::
-        {% for tag in tags %}
-          {% if tag != "posts" %}
-            <a href="/tags/{{ tag | slugify }}/">{{ tag }}</a>{% if not loop.last %}, {% endif %}
-          {% endif %}
-        {% endfor %}
-      {% endif %}
+        {% for tag in postTags -%}
+          <a href="/tags/{{ tag | slugify }}/">{{ tag }}</a>{% if not loop.last %}, {% endif %}
+        {%- endfor %}
+      {%- endif %}
+      <br>
+      <span class="post-stats">{{ content | tempoLeitura }}</span>
     </p>
   </div>
+
+  {%- set indice = content | sumario %}
+  {%- if indice.length >= 3 %}
+  <nav class="sumario" aria-label="Sumário">
+    <p class="sumario-title">Neste texto</p>
+    <ul>
+      {%- for item in indice %}
+      <li><a href="#{{ item.id }}">{{ item.texto }}</a></li>
+      {%- endfor %}
+    </ul>
+  </nav>
+  {%- endif %}
 
   <div class="post-body">
     {{ content | safe }}
   </div>
 </article>
 
-<div class="post-nav">
+<nav class="post-nav" aria-label="Navegação entre posts">
   {%- set previousPost = collections.posts | getPreviousCollectionItem(page) %}
   {%- set nextPost = collections.posts | getNextCollectionItem(page) %}
 
+  <span class="post-nav-prev">
   {% if previousPost %}
-    <a href="{{ previousPost.url }}">[ Post Anterior ]</a>
+    <a href="{{ previousPost.url }}">[ &larr; {{ previousPost.data.title }} ]</a>
   {% endif %}
+  </span>
 
-  {% if previousPost and nextPost %} {% endif %}
-
+  <span class="post-nav-next">
   {% if nextPost %}
-    <a href="{{ nextPost.url }}">[ Próximo Post ]</a>
+    <a href="{{ nextPost.url }}">[ {{ nextPost.data.title }} &rarr; ]</a>
   {% endif %}
-</div>
+  </span>
+</nav>

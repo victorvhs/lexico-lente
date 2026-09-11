@@ -1,5 +1,5 @@
 /* ========================================
-   BLOG RETRO 2000 - Stylesheet
+   LÉXICO & LENTES - Stylesheet
    Layout inspirado na web clássica dos anos 2000
    ======================================== */
 
@@ -8,14 +8,30 @@
   box-sizing: border-box;
 }
 
+:root {
+  --azul: #8ba4c8;
+  --azul-escuro: #5b7ba8;
+  --fundo: #f0f0e8;
+  --papel: #f5f5f0;
+  --caixa: #e8e8e0;
+  --linha: #ccc;
+  --linha-forte: #999;
+  --texto: #1a1a1a;
+  --texto-suave: #555;
+
+  --ui: Verdana, Arial, Helvetica, sans-serif;
+  --leitura: Georgia, "Times New Roman", Times, serif;
+  --mono: "Courier New", Courier, monospace;
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-family: var(--ui);
   font-size: 13px;
   line-height: 1.5;
-  color: #000;
-  background-color: #f0f0e8;
+  color: var(--texto);
+  background-color: var(--fundo);
 }
 
 /* Links */
@@ -28,31 +44,50 @@ a:visited {
 }
 a:hover {
   color: #0000ee;
-  text-decoration: underline;
+}
+a:focus-visible {
+  outline: 2px solid var(--azul-escuro);
+  outline-offset: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: #fff;
+  padding: 8px 12px;
+  border: 2px solid #000;
+  z-index: 10;
+}
+.skip-link:focus {
+  left: 8px;
+  top: 8px;
 }
 
 /* Container principal */
 #container {
   max-width: 1100px;
   margin: 0 auto;
-  background: #f5f5f0;
+  background: var(--papel);
 }
 
 /* ========================================
    HEADER
    ======================================== */
 #header {
-  background: #8ba4c8;
+  background: var(--azul);
   color: #fff;
   padding: 16px 20px;
 }
 #header h1 {
   margin: 0;
   font-size: 32px;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--leitura);
   font-weight: bold;
+}
+#header h1 a {
   color: #fff;
-  letter-spacing: normal;
+  text-decoration: none;
 }
 #header .subtitle {
   margin: 4px 0 0 0;
@@ -62,31 +97,53 @@ a:hover {
 
 /* ========================================
    LAYOUT 3 COLUNAS
+   O conteúdo vem primeiro no HTML (para o celular);
+   `order` recoloca as laterais nos lugares no desktop.
    ======================================== */
 #main {
   display: flex;
   min-height: 500px;
 }
+#leftbar  { order: 1; }
+#content  { order: 2; }
+#rightbar { order: 3; }
 
 /* ========================================
-   SIDEBAR ESQUERDA - Parceiros Técnicos
+   SIDEBARS
    ======================================== */
 #leftbar {
   width: 170px;
+  flex: 0 0 170px;
   padding: 12px;
-  background: #f5f5f0;
-  border-right: 1px solid #ccc;
+  background: var(--papel);
+  border-right: 1px solid var(--linha);
 }
-#leftbar h3 {
+#rightbar {
+  width: 200px;
+  flex: 0 0 200px;
+  padding: 12px;
+  background: var(--papel);
+  border-left: 1px solid var(--linha);
+}
+#leftbar h3,
+#rightbar h3 {
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 1px;
   margin: 0 0 10px 0;
   padding: 4px 6px;
-  background: #8ba4c8;
+  background: var(--azul);
   color: #fff;
   font-weight: bold;
-  font-family: Verdana, Arial, sans-serif;
+  font-family: var(--ui);
+}
+#rightbar .section {
+  margin-bottom: 20px;
+}
+.sidebar-rule {
+  border: none;
+  border-top: 1px solid var(--linha);
+  margin: 12px 0;
 }
 
 .banner {
@@ -94,8 +151,8 @@ a:hover {
   width: 100%;
   margin-bottom: 10px;
   padding: 8px 6px;
-  background: #e8e8e0;
-  border: 1px solid #ccc;
+  background: var(--caixa);
+  border: 1px solid var(--linha);
   text-align: center;
   font-size: 11px;
   color: #000;
@@ -103,12 +160,12 @@ a:hover {
 }
 .banner:hover {
   background: #ddd;
-  border-color: #999;
+  border-color: var(--linha-forte);
 }
 .banner strong {
   display: block;
   font-size: 13px;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--leitura);
   color: #000;
   margin-bottom: 2px;
 }
@@ -119,151 +176,6 @@ a:hover {
   color: #666;
   margin-top: 8px;
 }
-.partner-footer a {
-  color: #000;
-  text-decoration: underline;
-}
-
-/* ========================================
-   COLUNA CENTRAL - Conteúdo
-   ======================================== */
-#content {
-  flex: 1;
-  padding: 20px;
-  min-width: 0;
-  background: #f5f5f0;
-}
-
-/* Posts */
-.post {
-  margin-bottom: 0;
-  padding-bottom: 16px;
-  border-bottom: 1px solid #999;
-  margin-bottom: 24px;
-}
-.post:last-child {
-  border-bottom: none;
-}
-.post-header {
-  margin-bottom: 12px;
-}
-.post-title {
-  font-size: 22px;
-  margin: 0 0 6px 0;
-  color: #000;
-  font-family: Georgia, "Times New Roman", serif;
-  font-weight: bold;
-}
-.post-title a {
-  color: #000;
-  text-decoration: none;
-}
-.post-title a:hover {
-  color: #0000ee;
-  text-decoration: underline;
-}
-.post-meta {
-  font-size: 12px;
-  color: #333;
-  margin: 0;
-}
-.post-meta a {
-  color: #000;
-  text-decoration: underline;
-}
-
-.post-body {
-  text-align: left;
-}
-.post-body p {
-  margin: 10px 0;
-}
-.post-body h2 {
-  font-size: 18px;
-  color: #000;
-  font-family: Georgia, "Times New Roman", serif;
-  font-weight: bold;
-  margin-top: 24px;
-  margin-bottom: 12px;
-}
-.post-body h3 {
-  font-size: 14px;
-  color: #333;
-  margin-top: 16px;
-  font-weight: bold;
-}
-.post-body pre {
-  background: #e8e8e0;
-  border: 1px solid #ccc;
-  padding: 10px;
-  overflow-x: auto;
-  font-family: "Courier New", Courier, monospace;
-  font-size: 12px;
-}
-.post-body code {
-  font-family: "Courier New", Courier, monospace;
-  background: #e8e8e0;
-  padding: 1px 3px;
-  font-size: 12px;
-}
-.post-body blockquote {
-  margin: 10px 0;
-  padding: 8px 12px;
-  border-left: 3px solid #8ba4c8;
-  background: #e8e8e0;
-  font-style: italic;
-}
-.post-body ul,
-.post-body ol {
-  margin: 10px 0;
-  padding-left: 24px;
-}
-.post-body img {
-  max-width: 100%;
-  height: auto;
-  border: 1px solid #ccc;
-}
-
-/* Navegação de posts */
-.post-nav {
-  margin-top: 24px;
-  padding-top: 12px;
-  border-top: 1px solid #999;
-  font-size: 13px;
-  text-align: center;
-  font-family: Georgia, "Times New Roman", serif;
-}
-.post-nav a {
-  color: #000;
-  text-decoration: none;
-}
-.post-nav a:hover {
-  text-decoration: underline;
-}
-
-/* ========================================
-   SIDEBAR DIREITA - Arquivo, Tags, Sobre, RSS
-   ======================================== */
-#rightbar {
-  width: 200px;
-  padding: 12px;
-  background: #f5f5f0;
-  border-left: 1px solid #ccc;
-}
-#rightbar h3 {
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin: 0 0 10px 0;
-  padding: 4px 6px;
-  background: #8ba4c8;
-  color: #fff;
-  font-weight: bold;
-  font-family: Verdana, Arial, sans-serif;
-}
-#rightbar .section {
-  margin-bottom: 20px;
-}
 
 /* Arquivo */
 .archive-list {
@@ -273,17 +185,19 @@ a:hover {
   font-size: 12px;
 }
 .archive-list li {
-  margin-bottom: 2px;
+  margin-bottom: 6px;
 }
 .archive-list .year {
   font-weight: bold;
   color: #000;
-  margin-top: 6px;
+  margin-top: 10px;
   font-size: 13px;
+  font-family: var(--leitura);
 }
-.archive-list a {
-  color: #000;
-  text-decoration: underline;
+.archive-date {
+  display: block;
+  font-size: 10px;
+  color: var(--texto-suave);
 }
 
 /* Tags */
@@ -300,29 +214,466 @@ a:hover {
   font-size: 11px;
   padding: 2px 8px;
   margin: 2px;
-  background: #e8e8e0;
-  border: 1px solid #ccc;
+  background: var(--caixa);
+  border: 1px solid var(--linha);
   text-decoration: underline;
   color: #000;
 }
 .tag-list a:hover {
   background: #ddd;
-  border-color: #999;
+  border-color: var(--linha-forte);
 }
 
-/* Sobre */
 .about-text {
   font-size: 11px;
   color: #333;
-  line-height: 1.4;
+  line-height: 1.5;
 }
-
-/* RSS */
 .rss-link {
   font-size: 12px;
 }
-.rss-link a {
+
+/* ========================================
+   COLUNA CENTRAL
+   ======================================== */
+#content {
+  flex: 1 1 auto;
+  padding: 24px 28px;
+  min-width: 0;
+  background: var(--papel);
+}
+
+/* Posts */
+.post {
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--linha-forte);
+  margin-bottom: 28px;
+}
+.post:last-child,
+.post-single {
+  border-bottom: none;
+}
+.post-header {
+  margin-bottom: 16px;
+}
+.post-title {
+  font-size: 26px;
+  line-height: 1.2;
+  margin: 0 0 8px 0;
   color: #000;
+  font-family: var(--leitura);
+  font-weight: bold;
+}
+.post-single .post-title {
+  font-size: 32px;
+}
+.post-title a {
+  color: #000;
+  text-decoration: none;
+}
+.post-title a:hover {
+  color: #0000ee;
+  text-decoration: underline;
+}
+.post-meta {
+  font-size: 12px;
+  color: var(--texto-suave);
+  margin: 0;
+  line-height: 1.7;
+}
+.post-meta a {
+  color: #000;
+}
+.post-stats {
+  font-size: 11px;
+  color: #777;
+}
+
+/* ========================================
+   CORPO DO TEXTO — a parte que importa
+   Serifada, corpo generoso, medida travada em ~70 caracteres.
+   ======================================== */
+.post-body {
+  font-family: var(--leitura);
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--texto);
+  max-width: 38em;
+  text-align: left;
+}
+.post-body > p {
+  margin: 0 0 1.15em 0;
+}
+
+/* Capitular: só no primeiro parágrafo de um post aberto */
+.post-single .post-body > p:first-child::first-letter {
+  float: left;
+  font-family: var(--leitura);
+  font-size: 3.4em;
+  line-height: 0.82;
+  font-weight: bold;
+  margin: 0.06em 0.08em 0 0;
+  color: var(--azul-escuro);
+}
+
+/* Títulos internos */
+/* h1 dentro do corpo duplica o título do post; fica no tamanho de um h2. */
+.post-body h1,
+.post-body h2,
+.post-body h3,
+.post-body h4 {
+  font-family: var(--leitura);
+  color: #000;
+  line-height: 1.25;
+  scroll-margin-top: 12px;
+}
+.post-body h1,
+.post-body h2 {
+  font-size: 23px;
+  font-weight: bold;
+  margin: 1.8em 0 0.5em;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--linha);
+}
+.post-body h3 {
+  font-size: 19px;
+  font-weight: bold;
+  margin: 1.5em 0 0.4em;
+}
+.post-body h4 {
+  font-size: 16px;
+  font-weight: bold;
+  font-style: italic;
+  margin: 1.3em 0 0.3em;
+}
+.post-body h1 a,
+.post-body h2 a,
+.post-body h3 a,
+.post-body h4 a {
+  color: inherit;
+  text-decoration: none;
+}
+.post-body h2 a:hover::after,
+.post-body h3 a:hover::after,
+.post-body h4 a:hover::after {
+  content: " #";
+  color: var(--azul-escuro);
+  font-weight: normal;
+}
+
+/* Primeiro parágrafo após um h2: sem recuo, com leve destaque */
+.post-body h2 + p {
+  font-size: 1.02em;
+}
+
+/* Separadores ---------------------------------------------------- */
+
+/* Um `---` no Markdown vira um asterismo, não uma linha dura */
+.post-body hr,
+.post-body .separador {
+  border: none;
+  height: auto;
+  margin: 2em 0;
+  text-align: center;
+  overflow: visible;
+}
+.post-body hr::after,
+.post-body .separador::after {
+  content: "⁂";
+  display: block;
+  font-family: var(--leitura);
+  font-size: 20px;
+  color: var(--azul-escuro);
+  letter-spacing: 0.3em;
+}
+
+/* Citações ------------------------------------------------------- */
+.post-body blockquote {
+  margin: 1.5em 0;
+  padding: 0.6em 1.1em;
+  border-left: 3px solid var(--azul);
+  background: var(--caixa);
+  font-style: italic;
+  color: #333;
+}
+.post-body blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* Destaque / pull quote: {% destaque %} */
+.post-body .pullquote {
+  margin: 1.8em 0;
+  padding: 0.8em 0;
+  border-left: none;
+  border-top: 2px solid var(--azul);
+  border-bottom: 2px solid var(--azul);
+  background: none;
+  font-size: 1.22em;
+  font-style: italic;
+  line-height: 1.5;
+  color: #000;
+  text-align: center;
+}
+.post-body .pullquote .pullquote-source {
+  display: block;
+  margin-top: 0.5em;
+  font-size: 0.62em;
+  font-style: normal;
+  font-family: var(--ui);
+  color: var(--texto-suave);
+}
+
+/* Caixas: {% nota %} e {% aviso %} */
+.post-body .callout {
+  margin: 1.6em 0;
+  padding: 12px 16px;
+  border: 1px solid var(--linha);
+  border-left-width: 5px;
+  background: var(--caixa);
+  font-size: 0.93em;
+}
+.post-body .callout p {
+  margin: 0 0 0.7em 0;
+}
+.post-body .callout p:last-child {
+  margin-bottom: 0;
+}
+.post-body .callout-title {
+  font-family: var(--ui);
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 6px 0 !important;
+}
+.post-body .callout-nota {
+  border-left-color: var(--azul-escuro);
+}
+.post-body .callout-nota .callout-title {
+  color: var(--azul-escuro);
+}
+.post-body .callout-aviso {
+  border-left-color: #b8860b;
+  background: #f5efdc;
+}
+.post-body .callout-aviso .callout-title {
+  color: #8a6508;
+}
+
+/* Listas --------------------------------------------------------- */
+.post-body ul,
+.post-body ol {
+  margin: 0 0 1.15em 0;
+  padding-left: 1.5em;
+}
+.post-body li {
+  margin-bottom: 0.35em;
+}
+.post-body li > ul,
+.post-body li > ol {
+  margin-top: 0.35em;
+  margin-bottom: 0.35em;
+}
+
+/* Código --------------------------------------------------------- */
+.post-body pre {
+  background: #2b2b28;
+  color: #e8e8e0;
+  border: 1px solid var(--linha-forte);
+  padding: 12px 14px;
+  margin: 1.5em 0;
+  overflow-x: auto;
+  font-family: var(--mono);
+  font-size: 13.5px;
+  line-height: 1.5;
+  max-width: 100%;
+}
+.post-body pre code {
+  background: none;
+  border: none;
+  color: inherit;
+  padding: 0;
+  font-size: inherit;
+}
+.post-body code {
+  font-family: var(--mono);
+  background: var(--caixa);
+  border: 1px solid #dcdcd2;
+  padding: 0 4px;
+  font-size: 0.86em;
+  word-break: break-word;
+}
+
+/* Imagens e figuras ---------------------------------------------- */
+.post-body img {
+  max-width: 100%;
+  height: auto;
+}
+.post-body .figura {
+  margin: 1.8em 0;
+  padding: 8px;
+  background: #fff;
+  border: 1px solid var(--linha);
+}
+.post-body .figura img {
+  display: block;
+  width: 100%;
+}
+.post-body figcaption {
+  margin-top: 8px;
+  font-family: var(--ui);
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--texto-suave);
+  text-align: center;
+}
+
+.post-body .galeria {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+  margin: 1.8em 0;
+}
+.post-body .galeria figure {
+  margin: 0;
+  padding: 6px;
+  background: #fff;
+  border: 1px solid var(--linha);
+}
+.post-body .galeria img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.post-body .galeria-legenda {
+  grid-column: 1 / -1;
+  margin-top: 0;
+}
+
+/* Tabelas -------------------------------------------------------- */
+.post-body table {
+  border-collapse: collapse;
+  margin: 1.5em 0;
+  font-size: 0.9em;
+  width: 100%;
+}
+.post-body th,
+.post-body td {
+  border: 1px solid var(--linha);
+  padding: 6px 10px;
+  text-align: left;
+}
+.post-body th {
+  background: var(--azul);
+  color: #fff;
+  font-family: var(--ui);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.post-body tr:nth-child(even) td {
+  background: var(--caixa);
+}
+
+/* Sumário -------------------------------------------------------- */
+.sumario {
+  max-width: 38em;
+  margin: 0 0 28px 0;
+  padding: 10px 16px;
+  background: var(--caixa);
+  border: 1px solid var(--linha);
+}
+.sumario-title {
+  font-family: var(--ui);
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--azul-escuro);
+  margin: 0 0 6px 0;
+}
+.sumario ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  line-height: 1.8;
+}
+.sumario li::before {
+  content: "\203A\00a0";
+  color: var(--azul-escuro);
+}
+
+/* Notas de rodapé ------------------------------------------------ */
+.post-body .footnotes-sep {
+  margin: 2.5em 0 1em;
+}
+.post-body .footnotes-sep::after {
+  content: "";
+  display: block;
+  border-top: 1px solid var(--linha-forte);
+}
+.post-body .footnotes {
+  font-size: 0.82em;
+  color: var(--texto-suave);
+}
+.post-body .footnotes-title {
+  font-family: var(--ui);
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: none;
+  margin: 0 0 6px 0;
+  padding: 0;
+}
+.post-body .footnotes-list {
+  padding-left: 1.5em;
+}
+.post-body .footnote-ref a {
+  text-decoration: none;
+  font-size: 0.85em;
+  padding: 0 1px;
+}
+
+/* Resumo na home ------------------------------------------------- */
+.post-excerpt {
+  font-family: var(--leitura);
+  font-size: 15px;
+  line-height: 1.6;
+  max-width: 40em;
+  margin: 10px 0;
+}
+.leia-mais {
+  font-family: var(--ui);
+  font-size: 12px;
+}
+.leia-mais a {
+  text-decoration: none;
+}
+.leia-mais a:hover {
+  text-decoration: underline;
+}
+
+/* Navegação de posts --------------------------------------------- */
+.post-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 28px;
+  padding-top: 14px;
+  border-top: 1px solid var(--linha-forte);
+  font-size: 12px;
+  font-family: var(--ui);
+}
+.post-nav-next {
+  text-align: right;
+}
+.post-nav a {
+  color: #000;
+  text-decoration: none;
+}
+.post-nav a:hover {
   text-decoration: underline;
 }
 
@@ -330,11 +681,14 @@ a:hover {
    FOOTER
    ======================================== */
 #footer {
-  background: #8ba4c8;
+  background: var(--azul);
   padding: 10px 16px;
   font-size: 12px;
   color: #fff;
   text-align: center;
+}
+#footer p {
+  margin: 0;
 }
 #footer a {
   color: #fff;
@@ -347,14 +701,65 @@ a:hover {
 /* ========================================
    RESPONSIVIDADE
    ======================================== */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   #main {
     flex-direction: column;
   }
+  /* No celular a ordem vira: conteúdo, arquivo/tags, parceiros */
+  #content  { order: 1; }
+  #rightbar { order: 2; }
+  #leftbar  { order: 3; }
+
   #leftbar,
   #rightbar {
     width: 100%;
+    flex: 1 1 auto;
     border: none;
-    border-bottom: 1px solid #ccc;
+    border-top: 1px solid var(--linha);
+  }
+  #content {
+    padding: 18px 16px;
+  }
+  .post-body {
+    font-size: 16.5px;
+    max-width: none;
+  }
+  .post-single .post-title {
+    font-size: 26px;
+  }
+  .post-nav {
+    flex-direction: column;
+  }
+  .post-nav-next {
+    text-align: left;
+  }
+}
+
+/* ========================================
+   IMPRESSÃO
+   ======================================== */
+@media print {
+  #leftbar, #rightbar, #footer, .post-nav, .skip-link, .sumario {
+    display: none;
+  }
+  #header {
+    background: none;
+    color: #000;
+    border-bottom: 2px solid #000;
+  }
+  #header h1 a, #header .subtitle {
+    color: #000;
+  }
+  #container {
+    max-width: none;
+  }
+  .post-body {
+    font-size: 11pt;
+    max-width: none;
+  }
+  .post-body a::after {
+    content: " (" attr(href) ")";
+    font-size: 9pt;
+    color: #555;
   }
 }

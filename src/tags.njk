@@ -10,11 +10,13 @@ pagination:
     - posts
     - tagList
 permalink: /tags/{{ tag | slugify }}/
+eleventyComputed:
+  title: 'Tag: {{ tag }}'
 layout: base.njk
 ---
 
 <h2 class="post-title" style="margin-top:0;">
-  Posts marcados com "{{ tag }}"
+  Posts marcados com &ldquo;{{ tag }}&rdquo;
 </h2>
 
 {% set taglist = collections[tag] | reverse %}
@@ -25,17 +27,17 @@ layout: base.njk
     <h2 class="post-title">
       <a href="{{ post.url }}">{{ post.data.title }}</a>
     </h2>
-    <p class="post-meta">{{ post.date | dateFormat }}</p>
+    <p class="post-meta">
+      <time datetime="{{ post.date | dateISO }}">{{ post.date | dateFormat }}</time>
+    </p>
   </div>
-  {% if post.data.description %}
   <div class="post-body">
-    <p>{{ post.data.description }}</p>
-    <p><a href="{{ post.url }}">[ Ler mais ]</a></p>
+    <p class="post-excerpt">{{ post.data.description or (post.content | resumo(220)) }}</p>
+    <p class="leia-mais"><a href="{{ post.url }}">[ Ler mais &rarr; ]</a></p>
   </div>
-  {% endif %}
 </article>
 {% endfor %}
 
-<p style="margin-top:20px;">
-  <a href="/">← Voltar para a página inicial</a>
+<p class="leia-mais" style="margin-top:20px;">
+  <a href="/">&larr; Voltar para a página inicial</a>
 </p>

@@ -9,23 +9,20 @@ layout: base.njk
       <a href="{{ post.url }}">{{ post.data.title }}</a>
     </h2>
     <p class="post-meta">
-      {{ post.date | dateFormat }}
-      {% if post.data.tags %}
+      <time datetime="{{ post.date | dateISO }}">{{ post.date | dateFormat }}</time>
+      {%- set postTags = post.data.tags | semTags %}
+      {%- if postTags.length %}
         ::
-        {% for tag in post.data.tags %}
-          {% if tag != "posts" %}
-            <a href="/tags/{{ tag | slugify }}/">{{ tag }}</a>{% if not loop.last %}, {% endif %}
-          {% endif %}
-        {% endfor %}
-      {% endif %}
+        {% for tag in postTags -%}
+          <a href="/tags/{{ tag | slugify }}/">{{ tag }}</a>{% if not loop.last %}, {% endif %}
+        {%- endfor %}
+      {%- endif %}
     </p>
   </div>
 
-  {% if post.data.description %}
   <div class="post-body">
-    <p>{{ post.data.description }}</p>
-    <p><a href="{{ post.url }}">[ Ler mais ]</a></p>
+    <p class="post-excerpt">{{ post.data.description or (post.content | resumo(220)) }}</p>
+    <p class="leia-mais"><a href="{{ post.url }}">[ Ler mais &rarr; ]</a></p>
   </div>
-  {% endif %}
 </article>
 {% endfor %}

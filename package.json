@@ -1,7 +1,7 @@
 {
-  "name": "blog-retro-2000",
+  "name": "lexico-e-lentes",
   "version": "1.0.0",
-  "description": "Blog estilo web 2000 em Eleventy",
+  "description": "Léxico & Lentes — blog estático em Eleventy, com layout inspirado na web dos anos 2000",
   "scripts": {
     "build": "npx @11ty/eleventy",
     "serve": "npx @11ty/eleventy --serve",
@@ -10,9 +10,10 @@
   "keywords": [
     "blog",
     "eleventy",
-    "retro"
+    "retro",
+    "markdown"
   ],
-  "author": "",
+  "author": "Victor Reis",
   "license": "MIT",
   "devDependencies": {
     "@11ty/eleventy": "^3.1.5",

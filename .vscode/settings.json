@@ -20,7 +20,7 @@
     "editor.glyphMargin": false,
     "editor.rulers": [],
 
-    // Autocomplete de código atrapalha prosa; deixa só quando você pede
+    // Autocomplete de código atrapalha prosa: nada de popup automático.
     "editor.quickSuggestions": {
       "other": false,
       "comments": false,
@@ -29,6 +29,11 @@
     "editor.suggestOnTriggerCharacters": false,
     "editor.acceptSuggestionOnEnter": "off",
     "editor.parameterHints.enabled": false,
+
+    // ...mas os snippets precisam de Tab para expandir sem o popup.
+    // Sem isto, digitar "nota" + Tab só insere uma tabulação.
+    "editor.tabCompletion": "on",
+    "editor.snippetSuggestions": "top",
 
     // Respiro visual
     "editor.lineHeight": 1.8,

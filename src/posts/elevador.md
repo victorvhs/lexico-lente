@@ -40,7 +40,7 @@ Apertou o botão de pânico, se encostou na lateral e esperou.
 
 
 
--Essa porcaria travou outra vez. Vou chamar a equipe de manutenção. É a quarta vez essa semana. Até parece que eles querem ganhar dinheiro fácil para abrir a porta.
+{% dialogo %} Essa porcaria travou outra vez. Vou chamar a equipe de manutenção. É a quarta vez essa semana. Até parece que eles querem ganhar dinheiro fácil para abrir a porta.{% enddialogo %}
 
 Ouvindo isso, surgiu uma felicidade dentro dele.A desculpa perfeita tinha acabado de surgir. Escreveu uma longa mensagem avisando que não poderia chegar no horário e enviou junto uma foto com o elevador travado.
 
@@ -57,7 +57,7 @@ Abriu a boca pra falar e o interfone chiou outra vez:
 
 
 
--A manutenção chegou. O elevador vai nivelar e a porta vai abrir. Francamente, eu poderia fazer isso muito bem. Mas ninguém quer me pagar por isso.
+{% dialogo %} A manutenção chegou. O elevador vai nivelar e a porta vai abrir. Francamente, eu poderia fazer isso muito bem. Mas ninguém quer me pagar por isso.{% enddialogo %}
 
 O elevador chacoalha.
 Esse foi o momento de maior paz naquela semana atribulada que ele teve.
@@ -66,7 +66,7 @@ Ontem ele tinha ficado até bem tarde fazendo hora extra. Para tentar resolver u
 O elevador subiu alguns centímetros e a porta abriu e uma voz cansada e irritada soou de cima: 
 
 
--O senhor está bem ? Vamos colocar a escada pra você sair. Não é o jeito certo, mas o freio travou e vamos ter que liberar os cabos.
+{% dialogo %} O senhor está bem ? Vamos colocar a escada pra você sair. Não é o jeito certo, mas o freio travou e vamos ter que liberar os cabos.{% enddialogo %}
 
 
 A escada foi posicionada junto a parede, mais firmeza disse o técnico irritado.
@@ -78,5 +78,5 @@ Para no terceiro degrau.
 Disse, virando-se para trás, a escada não está muito firme cuidado ao subir. 
 No quinto degrau ele estendeu a mão para trás, se passaram vários minutos até ele desistir pois não haviam pegando a sua mão.
 Por fim ele olhou pra traz e disse, vem eu te seguro.
-Olhou fundo no espelho, viu um rosto cansado, com o cabelo desarrumado e olhar fundo.
-Demorou até se dar conta que aquele era o seu rosto essa semana
+Olhou profundamente no espelho, viu um rosto cansado, com o cabelo desarrumado e olheiras marcadas e escuras.
+Demorou até se dar conta que aquele era o seu rosto essa semana.

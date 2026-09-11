@@ -1,0 +1,57 @@
+# Dicionário do projeto — compartilhado entre o Code Spell Checker e o LTeX+.
+# Uma palavra por linha. "Adicionar à pasta de trabalho" no editor escreve aqui.
+
+# Blog
+Léxico
+Lentes
+lexicolentes
+
+# Stack
+Eleventy
+eleventy
+Nunjucks
+nunjucks
+markdown
+Markdown
+markdownlint
+frontmatter
+shortcode
+shortcodes
+permalink
+slug
+slugify
+CSS
+HTML
+RSS
+Atom
+
+# Termos técnicos que aparecem nos textos
+BSD
+OpenBSD
+Vim
+Rust
+GitHub
+GitLab
+Linux
+shell
+scripts
+one-liners
+frontend
+backend
+fullstack
+devops
+commit
+commits
+deploy
+tracker
+trackers
+cookie
+cookies
+
+# Tipografia e escrita
+capitular
+asterismo
+entrelinha
+epígrafe
+travessão
+diagramação

@@ -1,0 +1,137 @@
+{
+  // ============================================================
+  //  AMBIENTE DE ESCRITA — Léxico & Lentes
+  //  Só vale para este projeto. Nada aqui afeta seus outros repos.
+  // ============================================================
+
+  // ---------- Como o editor se comporta em Markdown ----------
+  "[markdown]": {
+    // Quebra na largura da coluna, não numa coluna fixa
+    "editor.wordWrap": "bounded",
+    "editor.wordWrapColumn": 90,
+
+    // Tira o ruído de IDE de cima do texto
+    "editor.lineNumbers": "off",
+    "editor.minimap.enabled": false,
+    "editor.renderLineHighlight": "none",
+    "editor.occurrencesHighlight": "off",
+    "editor.selectionHighlight": false,
+    "editor.folding": false,
+    "editor.glyphMargin": false,
+    "editor.rulers": [],
+
+    // Autocomplete de código atrapalha prosa; deixa só quando você pede
+    "editor.quickSuggestions": {
+      "other": false,
+      "comments": false,
+      "strings": false
+    },
+    "editor.suggestOnTriggerCharacters": false,
+    "editor.acceptSuggestionOnEnter": "off",
+    "editor.parameterHints.enabled": false,
+
+    // Respiro visual
+    "editor.lineHeight": 1.8,
+    "editor.fontSize": 15,
+    "editor.padding.top": 24,
+    "editor.cursorBlinking": "smooth",
+    "editor.cursorSmoothCaretAnimation": "on",
+
+    // Navegar por palavra respeitando acentuação
+    "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?",
+
+    // O blog roda com breaks:true, então a quebra de linha já é
+    // significativa — mas espaço no fim de linha nunca é.
+    "files.trimTrailingWhitespace": true,
+    "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+  },
+
+  // A régua marca onde a linha ficaria confortável, sem forçar quebra
+  "editor.rulers": [],
+
+  // ---------- Ortografia (Code Spell Checker) ----------
+  "cSpell.language": "pt-BR,en",
+  "cSpell.enabledFileTypes": {
+    "markdown": true,
+    "njk": true,
+    "plaintext": true,
+    "javascript": false,
+    "json": false,
+    "css": false
+  },
+  // Não marcar o que não é prosa
+  "cSpell.ignoreRegExpList": [
+    "/\\{%[\\s\\S]*?%\\}/",       // shortcodes do Eleventy
+    "/\\{[.#][^}]*\\}/",          // marcas de classe: {.solo}
+    "/`[^`]*`/",                  // código inline
+    "/```[\\s\\S]*?```/",         // blocos de código
+    "/\\]\\([^)]*\\)/",           // destino de links
+    "/^---[\\s\\S]*?^---/m"       // front matter
+  ],
+  "cSpell.customDictionaries": {
+    "lexico": {
+      "name": "lexico",
+      "path": "${workspaceFolder}/.vscode/dicionario.txt",
+      "addWords": true,
+      "scope": "workspace"
+    }
+  },
+
+  // ---------- Gramática e estilo (LTeX+) ----------
+  "ltex.language": "pt-BR",
+  "ltex.enabled": ["markdown", "plaintext"],
+  "ltex.dictionary": {
+    "pt-BR": [":${workspaceFolder}/.vscode/dicionario.txt"]
+  },
+  "ltex.disabledRules": {
+    // Falso positivo constante em prosa literária
+    "pt-BR": ["WHITESPACE_RULE"]
+  },
+  // Não analisar o que o Markdown não renderiza como texto
+  "ltex.markdown.nodes": {
+    "CodeBlock": "ignore",
+    "FencedCodeBlock": "ignore",
+    "IndentedCodeBlock": "ignore",
+    "Code": "dummy",
+    "AutoLink": "dummy",
+    "HtmlBlock": "ignore",
+    "HtmlInline": "ignore"
+  },
+  "ltex.additionalRules.enablePickyRules": true,
+  "ltex.completionEnabled": false,
+
+  // ---------- Vale (as mesmas regras da CI, ao vivo) ----------
+  "vale.valeCLI.config": "${workspaceFolder}/.vale.ini",
+  "vale.valeCLI.minAlertLevel": "suggestion",
+
+  // ---------- Foco ----------
+  // Zen Mode (Cmd+K Z) fica centralizado e sem distração
+  "zenMode.centerLayout": true,
+  "zenMode.hideLineNumbers": true,
+  "zenMode.showTabs": "none",
+  "zenMode.fullScreen": false,
+  "workbench.editor.centeredLayoutAutoResize": false,
+  "workbench.editor.centeredLayoutFixedWidth": true,
+
+  // ---------- Markdown All in One ----------
+  "markdown.extension.toc.levels": "2..3",
+  "markdown.extension.italic.indicator": "*",
+  "markdown.extension.bold.indicator": "**",
+  "markdown.extension.list.indentationSize": "adaptive",
+  "markdown.extension.orderedList.marker": "one",
+  "markdown.extension.print.absoluteImgPath": false,
+
+  // ---------- Preview ----------
+  "markdown.preview.fontSize": 15,
+  "markdown.preview.lineHeight": 1.7,
+  "markdown.preview.fontFamily": "Georgia, 'Times New Roman', serif",
+
+  // ---------- Arquivos ----------
+  "files.associations": {
+    "*.njk": "html"
+  },
+  "search.exclude": {
+    "**/_site": true,
+    "**/node_modules": true
+  }
+}

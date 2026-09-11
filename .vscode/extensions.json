@@ -1,9 +1,22 @@
 {
   "recommendations": [
-    "valentjn.vscode-ltex",
+    // Gramática e estilo em pt-BR, offline (LanguageTool embutido).
+    // Fork mantido do antigo valentjn.vscode-ltex, que foi arquivado.
+    "ltex-plus.vscode-ltex-plus",
+
+    // Ortografia rápida, com dicionário pt-BR
     "streetsidesoftware.code-spell-checker",
     "streetsidesoftware.code-spell-checker-portuguese-brazilian",
+
+    // Conforto de escrita em Markdown
     "yzhang.markdown-all-in-one",
-    "DavidAnson.vscode-markdownlint"
+    "DavidAnson.vscode-markdownlint",
+
+    // Estilo de prosa nas regras do .vale.ini (as mesmas da CI)
+    "ChrisChinchilla.vale-vscode"
+  ],
+  "unwantedRecommendations": [
+    // Arquivado pelo autor em 2023; substituído por ltex-plus
+    "valentjn.vscode-ltex"
   ]
 }

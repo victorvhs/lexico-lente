@@ -1,14 +1,18 @@
 name: Revisão Ortográfica
 
+# Pull requests estão desabilitados neste repositório, então o gatilho
+# é só push — e o reporter precisa ser github-check, não anotação de PR.
 on:
   push:
     paths:
       - 'src/**/*.md'
       - '.vale.ini'
-  pull_request:
-    paths:
-      - 'src/**/*.md'
-      - '.vale.ini'
+  workflow_dispatch:
+
+# O reporter github-check precisa escrever o resultado como um check run.
+permissions:
+  contents: read
+  checks: write
 
 jobs:
   vale:
@@ -23,5 +27,9 @@ jobs:
         with:
           files: src/
           fail_on_error: false
+          # github-pr-annotations só funciona em build de PR; num repo
+          # sem PRs o reviewdog aborta e o job falha sem ter nada a dizer.
+          reporter: github-check
+          filter_mode: nofilter
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

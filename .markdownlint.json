@@ -1,0 +1,24 @@
+{
+  "//": "Regras afrouxadas onde o padrão do markdownlint briga com prosa.",
+
+  "MD013": false,
+  "//MD013": "Limite de colunas: a quebra é decisão do texto, não do linter",
+
+  "MD033": false,
+  "//MD033": "HTML inline: os shortcodes do Eleventy geram HTML",
+
+  "MD041": false,
+  "//MD041": "Primeira linha não é título: os posts começam com front matter",
+
+  "MD024": { "siblings_only": true },
+  "//MD024": "Títulos repetidos são aceitáveis em seções diferentes",
+
+  "MD025": { "front_matter_title": "" },
+  "//MD025": "O title do front matter não conta como h1 da página",
+
+  "MD036": false,
+  "//MD036": "Ênfase no lugar de título: recurso legítimo em prosa",
+
+  "MD049": { "style": "asterisk" },
+  "MD050": { "style": "asterisk" }
+}

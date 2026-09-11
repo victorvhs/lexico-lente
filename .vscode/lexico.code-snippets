@@ -1,0 +1,93 @@
+{
+  "Post novo": {
+    "scope": "markdown",
+    "prefix": "post",
+    "body": [
+      "---",
+      "title: \"$1\"",
+      "date: ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}",
+      "tags:",
+      "  - ${2:tag}",
+      "description: \"$3\"",
+      "---",
+      "",
+      "$0"
+    ],
+    "description": "Front matter de um post novo, com a data de hoje"
+  },
+
+  "Nota": {
+    "scope": "markdown",
+    "prefix": "nota",
+    "body": ["{% nota ${1:\"Título\"} %}", "$0", "{% endnota %}"],
+    "description": "Caixa de aparte"
+  },
+
+  "Aviso": {
+    "scope": "markdown",
+    "prefix": "aviso",
+    "body": ["{% aviso %}", "$0", "{% endaviso %}"],
+    "description": "Caixa de atenção"
+  },
+
+  "Destaque": {
+    "scope": "markdown",
+    "prefix": "destaque",
+    "body": ["{% destaque ${1:\"Fonte\"} %}", "$0", "{% enddestaque %}"],
+    "description": "Frase em destaque (pull quote)"
+  },
+
+  "Epígrafe": {
+    "scope": "markdown",
+    "prefix": "epigrafe",
+    "body": ["{% epigrafe ${1:\"Fonte\"} %}", "$0", "{% endepigrafe %}"],
+    "description": "Abertura de texto, alinhada à direita"
+  },
+
+  "Diálogo": {
+    "scope": "markdown",
+    "prefix": "dialogo",
+    "body": ["{% dialogo %}", "$0", "{% enddialogo %}"],
+    "description": "Uma fala por linha, com travessão"
+  },
+
+  "Verso": {
+    "scope": "markdown",
+    "prefix": "verso",
+    "body": ["{% verso %}", "$0", "{% endverso %}"],
+    "description": "Bloco em que cada quebra de linha conta"
+  },
+
+  "Figura": {
+    "scope": "markdown",
+    "prefix": "figura",
+    "body": ["{% figura \"/img/${1:foto.jpg}\", \"${2:legenda}\", \"${3:texto alternativo}\" %}$0"],
+    "description": "Imagem com legenda"
+  },
+
+  "Galeria": {
+    "scope": "markdown",
+    "prefix": "galeria",
+    "body": [
+      "{% galeria %}",
+      "  /img/${1:a.jpg} | ${2:legenda}",
+      "  $0",
+      "{% endgaleria %}"
+    ],
+    "description": "Grade de fotos"
+  },
+
+  "Separador de cena": {
+    "scope": "markdown",
+    "prefix": "separador",
+    "body": ["", "---", "", "$0"],
+    "description": "Asterismo entre cenas"
+  },
+
+  "Classe de linha": {
+    "scope": "markdown",
+    "prefix": "classe",
+    "body": ["{.${1|solo,peso,centro,direita,recuo,sussurro,pausa,fala|}}$0"],
+    "description": "Marca de formatação no fim da linha"
+  }
+}

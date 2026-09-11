@@ -575,6 +575,119 @@ a:focus-visible {
   background: var(--caixa);
 }
 
+/* ========================================
+   CLASSES DE LINHA E PARÁGRAFO
+   Escritas com `{.classe}`. Funcionam igual num parágrafo inteiro
+   e numa linha solta, porque .linha é display:block.
+   ======================================== */
+.post-body .linha {
+  display: block;
+}
+/* A linha marcada já é bloco: os <br> em volta virariam espaço dobrado. */
+.post-body br:has(+ .linha),
+.post-body .linha + br {
+  display: none;
+}
+
+/* Respiro: tira a linha do fluxo, dá espaço em volta */
+.post-body .solo {
+  margin: 1.4em 0;
+  font-size: 1.1em;
+}
+.post-body p.solo {
+  margin: 1.6em 0;
+}
+
+.post-body .centro {
+  text-align: center;
+}
+.post-body .direita {
+  text-align: right;
+}
+
+/* Recuo: aparte, pensamento deslocado */
+.post-body .recuo {
+  padding-left: 2.2em;
+}
+
+/* Sussurro: menor e mais claro */
+.post-body .sussurro {
+  font-size: 0.87em;
+  color: var(--texto-suave);
+}
+
+/* Peso: a frase que carrega o parágrafo */
+.post-body .peso {
+  font-size: 1.22em;
+  line-height: 1.4;
+  font-weight: bold;
+}
+
+/* Pausa: só ar depois da linha, sem mudar o corpo */
+.post-body .pausa {
+  margin-bottom: 1.2em;
+}
+
+/* Fala: travessão com recuo pendente */
+.post-body .fala,
+.post-body .dialogo .fala {
+  margin: 0.5em 0;
+  padding-left: 1.4em;
+  text-indent: -1.4em;
+}
+.post-body .fala::before {
+  content: "— ";
+}
+.post-body .dialogo {
+  margin: 1.5em 0;
+}
+
+/* ========================================
+   VERSO — bloco em que cada linha é uma linha
+   ======================================== */
+.post-body .verso {
+  margin: 1.8em 0;
+  padding-left: 1.6em;
+  border-left: 2px solid var(--linha);
+  font-size: 1.02em;
+  line-height: 1.55;
+}
+.post-body .verso-linha {
+  display: block;
+  /* linha longa que vaza quebra com recuo, como em poesia impressa */
+  padding-left: 1.6em;
+  text-indent: -1.6em;
+}
+.post-body .verso-vazia {
+  height: 0.8em;
+}
+
+/* ========================================
+   EPÍGRAFE — abertura de texto
+   ======================================== */
+.post-body .epigrafe {
+  margin: 0 0 2em auto;
+  padding: 0;
+  max-width: 24em;
+  border: none;
+  background: none;
+  font-size: 0.95em;
+  font-style: italic;
+  color: var(--texto-suave);
+  text-align: right;
+}
+.post-body .epigrafe p {
+  margin: 0 0 0.3em 0;
+}
+.post-body .epigrafe footer {
+  font-family: var(--ui);
+  font-size: 0.78em;
+  font-style: normal;
+}
+.post-body .epigrafe footer::before {
+  content: "— ";
+}
+
 /* Sumário -------------------------------------------------------- */
 .sumario {
   max-width: 38em;

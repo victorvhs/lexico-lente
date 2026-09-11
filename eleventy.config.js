@@ -2,6 +2,7 @@ const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 const markdownItAttrs = require("markdown-it-attrs");
 const markdownItFootnote = require("markdown-it-footnote");
+const markdownLinhas = require("./src/_lib/markdown-linhas.js");
 const { feedPlugin } = require("@11ty/eleventy-plugin-rss");
 
 const SITE = {
@@ -32,6 +33,8 @@ module.exports = function(eleventyConfig) {
     typographer: true
   })
     .use(markdownItAttrs)
+    // depois do attrs: estende `{.classe}` para o nível de linha
+    .use(markdownLinhas)
     .use(markdownItFootnote)
     .use(markdownItAnchor, {
       permalink: markdownItAnchor.permalink.headerLink(),
@@ -107,6 +110,50 @@ ${cap}</figure>`;
 
   // {% separador %} — asterismo, para pular de cena sem abrir capítulo
   eleventyConfig.addShortcode("separador", () => '<hr class="separador">');
+
+  /* ----------------------------------------
+     BLOCOS DE PROSA
+     Para passagens em que cada linha conta.
+     ---------------------------------------- */
+
+  // {% verso %}...{% endverso %}
+  // Preserva quebras e a indentação inicial de cada linha.
+  eleventyConfig.addPairedShortcode("verso", function(content) {
+    const linhas = content
+      .replace(/^\n+|\n+$/g, "")
+      .split("\n")
+      .map(linha => {
+        const recuo = (linha.match(/^\s*/) || [""])[0].length;
+        const texto = inline(linha);
+        if (!texto) return '<span class="verso-linha verso-vazia"></span>';
+        const estilo = recuo ? ` style="padding-left:${Math.min(recuo, 24) * 0.6}em"` : "";
+        return `<span class="verso-linha"${estilo}>${texto}</span>`;
+      })
+      .join("\n");
+    return `<div class="verso">\n${linhas}\n</div>`;
+  });
+
+  // {% dialogo %}...{% enddialogo %}
+  // Uma fala por linha. O travessão é posto se você não puser.
+  eleventyConfig.addPairedShortcode("dialogo", function(content) {
+    const falas = content
+      .trim()
+      .split("\n")
+      .map(l => l.trim())
+      .filter(Boolean)
+      .map(linha => {
+        const limpa = linha.replace(/^[-–—]\s*/, "");
+        return `<p class="fala">${inline(limpa)}</p>`;
+      })
+      .join("\n");
+    return `<div class="dialogo">\n${falas}\n</div>`;
+  });
+
+  // {% epigrafe "Fonte" %}...{% endepigrafe %} — abertura de texto
+  eleventyConfig.addPairedShortcode("epigrafe", function(content, fonte = null) {
+    const cite = fonte ? `<footer>${inline(fonte)}</footer>` : "";
+    return `<blockquote class="epigrafe">${block(content)}${cite}</blockquote>`;
+  });
 
   /* ========================================
      COLEÇÕES

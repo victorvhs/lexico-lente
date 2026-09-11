@@ -22,6 +22,109 @@ Uma linha em branco continua abrindo um parágrafo novo, com o espaço maior.
 A primeira letra de um post ganha capitular automaticamente. Você não
 precisa fazer nada.
 
+## Formatando uma linha só
+
+Esta é a peça central para quem escreve em frases curtas.
+
+Uma marca `{.classe}` no fim de uma linha vale **só para aquela linha**.
+A mesma marca sozinha na própria linha vale para **o parágrafo inteiro**.
+É a posição que decide, e não há sintaxe nova para aprender.
+
+Ele apertou o botão de pânico.
+Ele estava preso. {.solo}
+Entre os andares 10 e 9.
+
+```text
+Ele apertou o botão de pânico.
+Ele estava preso. {.solo}
+Entre os andares 10 e 9.
+```
+
+As classes disponíveis:
+
+Isto é `.solo` — a frase sai do fluxo e ganha ar dos dois lados. {.solo}
+Isto é `.peso` — a frase que carrega o parágrafo. {.peso}
+Isto é `.centro`. {.centro}
+Isto é `.direita`. {.direita}
+Isto é `.recuo` — deslocado, como um pensamento de lado. {.recuo}
+Isto é `.sussurro` — menor e mais claro, para um aparte. {.sussurro}
+Isto é `.pausa` — só ar depois, sem mudar o corpo. {.pausa}
+E esta é uma linha comum, para comparação.
+
+Dá para combinar: `{.centro .sussurro}`.
+E para pendurar um id de âncora: {% raw %}`{#marca}`{% endraw %} ou {% raw %}`{.centro #marca}`{% endraw %}.
+
+Aplicada ao parágrafo inteiro, a marca vai sozinha na última linha:
+
+Todo este parágrafo está recuado.
+Inclusive esta segunda linha.
+{.recuo}
+
+```text
+Todo este parágrafo está recuado.
+Inclusive esta segunda linha.
+{.recuo}
+```
+
+## Diálogo
+
+Cada linha vira uma fala, com travessão e recuo pendente. Se você já
+escrever o travessão, ele não é duplicado.
+
+{% dialogo %}
+Essa porcaria travou outra vez. Vou chamar a equipe de manutenção.
+É a quarta vez essa semana.
+Até parece que eles querem ganhar dinheiro fácil para abrir a porta.
+{% enddialogo %}
+
+```text
+{% raw %}{% dialogo %}
+Essa porcaria travou outra vez.
+É a quarta vez essa semana.
+{% enddialogo %}{% endraw %}
+```
+
+Para uma fala isolada no meio da prosa, existe a classe `.fala`:
+
+Ele abriu a boca e o interfone chiou outra vez.
+A manutenção chegou. {.fala}
+O elevador chacoalhou.
+
+## Verso
+
+Bloco em que cada quebra de linha é intencional e a indentação é preservada. Uma linha longa que não couber quebra com recuo, como em poesia impressa.
+
+{% verso %}
+Mochila nas costas,
+   celular na mão,
+      porta trancada
+e ele segue rumo ao elevador.
+
+Olha de relance pelo vidro da janela.
+{% endverso %}
+
+```text
+{% raw %}{% verso %}
+Mochila nas costas,
+   celular na mão,
+      porta trancada
+{% endverso %}{% endraw %}
+```
+
+## Epígrafe
+
+Abertura de texto, alinhada à direita:
+
+{% epigrafe "Lev Vygotsky" %}
+O aprendizado acontece primeiro entre pessoas.
+{% endepigrafe %}
+
+```text
+{% raw %}{% epigrafe "Lev Vygotsky" %}
+O texto da epígrafe.
+{% endepigrafe %}{% endraw %}
+```
+
 ## Separadores
 
 Três hifens no Markdown (`---`) não viram uma linha dura: viram um asterismo
@@ -140,6 +243,11 @@ Código `inline` fica entre crases simples.
 
 | Elemento | Como se escreve |
 |----------|-----------------|
+| Formatar uma linha | `texto {% raw %}{.classe}{% endraw %}` no fim da linha |
+| Formatar o parágrafo | `{% raw %}{.classe}{% endraw %}` sozinha na última linha |
+| Diálogo | `{% raw %}{% dialogo %}{% endraw %}` |
+| Verso | `{% raw %}{% verso %}{% endraw %}` |
+| Epígrafe | `{% raw %}{% epigrafe %}{% endraw %}` |
 | Separador de cena | `---` |
 | Destaque | `{% raw %}{% destaque %}{% endraw %}` |
 | Nota | `{% raw %}{% nota %}{% endraw %}` |
